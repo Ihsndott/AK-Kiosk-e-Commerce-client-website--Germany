@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/admin/
+Disallow: /account/
+Disallow: /api/account/
+
+Sitemap: https://ak-kiosk.de/sitemap.xml
+
