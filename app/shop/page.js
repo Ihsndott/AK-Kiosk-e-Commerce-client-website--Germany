@@ -133,11 +133,10 @@ export default function ShopPage() {
               <button
                 key={tab.id}
                 onClick={() => setSelectedCategory(tab.id)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all ${
-                  selectedCategory === tab.id
-                    ? "bg-ak-charcoal text-ak-ivory shadow-sm"
-                    : "bg-white/70 hover:bg-white text-ak-charcoal border border-ak-charcoal/10"
-                }`}
+                className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all ${selectedCategory === tab.id
+                  ? "bg-ak-charcoal text-ak-ivory shadow-sm"
+                  : "bg-white/70 hover:bg-white text-ak-charcoal border border-ak-charcoal/10"
+                  }`}
               >
                 {tab.label}
               </button>
@@ -164,7 +163,7 @@ export default function ShopPage() {
         {/* Content area: Loading / Error / Empty / Success */}
         <div className="py-8">
           {loading && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[...Array(8)].map((_, i) => (
                 <ProductSkeleton key={i} />
               ))}
@@ -217,7 +216,7 @@ export default function ShopPage() {
           )}
 
           {!loading && !error && sortedProducts.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {sortedProducts.map((product) => (
                 <ProductCard
                   key={product._id || product.id}

@@ -1244,3 +1244,132 @@
 - [x] **Production Build (`npm run build`)**:
   - Executed production build with **exit code 0**.
   - All 26 App Router routes statically generated or dynamically server-rendered without errors.
+
+---
+
+## 📋 Stage 17 Checklist: Homepage Hero Inner Content Reference Redesign
+
+### 1. Hero Inner Content Redesign (`components/home/HeroSection.jsx`)
+- [x] **Top Centered Badge**:
+  - Centered badge with storefront icon: `AK KIOSK & ASIAN MARKET` (`Store` icon, warm cream background `#FAF6EF`, border `#E8DCC9`, burgundy letterspaced text).
+- [x] **Headline with Reference Accents**:
+  - Primary line: *"A Little Taste of Asia,"* with decorative burgundy accent rays.
+  - Sub-line: *"Right Around the Corner."* in italic burgundy serif, featuring the exact reference underline under *"the Corner."*.
+- [x] **Shop Description**:
+  - Clean, concise text: *"Discover authentic Asian groceries, delicious snacks, refreshing drinks, and everyday essentials in Oberhausen."*.
+- [x] **Central Visual & 4 Floating Category Labels**:
+  - One medium-sized rectangular Asian grocery shop image (`aspect-[16/10]`) with `rounded-2xl sm:rounded-3xl`, `border-4 sm:border-[6px] border-white`, and soft drop shadow.
+  - Four category cards flanking the image:
+    - **Asian Groceries** (noodle bowl icon `Soup`, linked to `/categories/groceries`).
+    - **Snacks & Treats** (snack icon `Cookie`, linked to `/categories/snacks`).
+    - **Drinks & Beverages** (drink cup icon `CupSoda`, linked to `/categories/drinks`).
+    - **Authentic Selection** (leaf icon `Leaf`, linked to `/shop`).
+  - Mobile responsiveness: cards adapt to a responsive 2x2 grid on small screens.
+- [x] **Action Buttons (Below Image)**:
+  - **SHOP NOW** (`/shop`): Dark charcoal pill button with shopping cart icon (`ShoppingCart`).
+  - **ABOUT US →** (`/about`): Cream pill button with arrow icon (`ArrowRight`).
+- [x] **Bottom Trust & Location Bar**:
+  - Three-column footer bar separated by vertical dividers:
+    - Overlapping customer avatars, 5 stars, and *"800+ OBERHAUSEN SHOPPERS"*.
+    - Red `MapPin` icon with verified physical store address: *"Buschhausener Str. 63, 46049 Oberhausen"*.
+    - Red delivery `Truck` icon with *"Local & Reliable Service"*.
+- [x] **Corner Wave Aesthetics**:
+  - Added traditional Japanese/Asian wave pattern (Seigaiha) in the bottom-left and bottom-right corners matching the reference image.
+- [x] **Removal of Product Fetching & Add to Cart from Hero**:
+  - Removed all product querying, MongoDB dependencies, and cart state from `HeroSection.jsx`.
+  - Zero modifications made outside the hero inner content.
+
+### 2. Verification & Build
+- [x] **Production Build (`npm run build`)**:
+  - Executed production build with **exit code 0**.
+  - All 26 App Router routes statically generated or dynamically server-rendered cleanly.
+
+---
+
+## 🛒 Stage 18 Checklist: Bestsellers & New Arrivals Layout Fix
+
+### 1. `components/products/ProductCard.jsx` — Responsive Mobile Changes
+- [x] Card class: `rounded-2xl sm:rounded-3xl`, `p-2.5 sm:p-4`, `w-full h-full`
+- [x] Image link: `rounded-xl sm:rounded-2xl`
+- [x] Image `sizes`: `50vw` on mobile (was `100vw`)
+- [x] Badges: `top-2 left-2 sm:top-3 sm:left-3`, `text-[9px] sm:text-[10px]`, `max-w-[70%] truncate`
+- [x] Product info section: `pt-2.5 sm:pt-4`, `text-[10px] sm:text-[11px]`
+- [x] Product name: `text-xs sm:text-sm`, `min-h-[32px] sm:min-h-[40px]`, `leading-snug`
+- [x] Price: `text-xs sm:text-base`, `truncate`
+- [x] Add button: `px-2.5 sm:px-3.5`, `py-1.5 sm:py-2`, `text-[10px] sm:text-xs`, `gap-1 sm:gap-1.5`
+- [x] Icon sizes: `w-3 h-3 sm:w-3.5 sm:h-3.5`
+- [x] All MongoDB integration and cart functionality (`addToCart`, `handleAdd`, `isAdded`) preserved
+
+### 2. `components/products/ProductGrid.jsx` — Responsive Grid Fix
+- [x] Grid: `grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 w-full` (was `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6`)
+- [x] Ensures 2 columns on mobile/tablet, 4 on desktop
+
+### 3. `components/home/Bestsellers.jsx` — Layout Match to CategorySection
+- [x] Import: `ArrowRight` → `ArrowUpRight`
+- [x] View All link: changed from bordered pill to CategorySection-matching inline `ArrowUpRight` style (`inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase ... group`)
+- [x] Section class matches `max-w-7xl` container width and horizontal spacing
+- [x] Fetch logic: products sorted to prioritize Samyang/bestseller-badged items
+
+### 4. `components/home/NewArrivals.jsx` — Latest Products + Layout Match
+- [x] Default state: `PRODUCTS.slice(0, 4)` (was `slice(4,8)` — only 5 static items, returned wrong fallback)
+- [x] Live fetch: client-side sort by `createdAt` descending, takes first 4 — always shows newest admin-added products
+- [x] Heading renamed to **"New Arrivals"**
+- [x] Description updated: *"Directly imported authentic snacks, drinks, and grocery essentials newly added to our shelves in Oberhausen."*
+- [x] View All link: `ArrowUpRight` style matching CategorySection
+- [x] Section class: `py-16 sm:py-24 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto`
+- [x] Header div: `flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4`
+
+### 5. API & Data Verification
+- [x] `app/api/products/route.js` already sorts by `{ createdAt: -1 }` and returns `createdAt` in all responses
+- [x] `models/Product.js` has `timestamps: true` with `createdAt` index
+- [x] Confirmed 5 MongoDB products with valid timestamps (newest: Citrusy Shrimp Skewers, Lemon Mojito, Burfi, Caramel Latte, Samyang)
+
+### 6. Verification & Build
+- [x] **Production Build (`npm run build`)**: exit code **0**
+- [x] All **26 App Router routes** statically generated or dynamically server-rendered without errors
+- [x] No JSX/TypeScript errors, no compilation warnings
+- [x] Homepage (`/`): 9.88 kB, middleware: 31.9 kB
+
+---
+
+## 🗂️ Stage 19 Checklist: CategorySection Mobile Design Polish
+
+### Modified File
+- `components/home/CategorySection.jsx` — mobile-only responsive improvements
+
+### Changes Made (mobile-targeted, desktop preserved)
+
+| Element | Before (mobile) | After (mobile) |
+|---|---|---|
+| Grid gap | `gap-6` | `gap-3 sm:gap-5 lg:gap-6` |
+| Card corners | `rounded-3xl` | `rounded-2xl sm:rounded-3xl` |
+| Card height | no `h-full` | `h-full` (equal height in row) |
+| Image container | no `shrink-0` | `shrink-0` (prevents image compression) |
+| Image `sizes` | `100vw` on mobile | `50vw` on mobile (correct for 2-col grid) |
+| Item count badge position | `top-3 right-3` | `top-2 right-2 sm:top-3 sm:right-3` |
+| Item count badge padding | `px-2.5 py-1` | `px-1.5 sm:px-2.5 py-0.5 sm:py-1` |
+| Item count badge text | `text-[10px]` | `text-[8px] sm:text-[10px]`, `truncate max-w-[80%]` |
+| Card inner padding | `p-5` | `p-3 sm:p-5` |
+| Category title size | `text-lg` | `text-sm sm:text-lg` |
+| Category title overflow | no clamp | `line-clamp-1 leading-snug` |
+| Description text size | `text-xs` | `text-[10px] sm:text-xs` |
+| Description top margin | `mt-1.5` | `mt-1 sm:mt-1.5` |
+| Browse button top padding | `pt-4 mt-3` | `pt-2.5 sm:pt-4 mt-2.5 sm:mt-3` |
+| Browse button text size | `text-xs` | `text-[9px] sm:text-xs` |
+| Browse button text | no truncate | `truncate pr-1` (prevents overflow) |
+| Arrow icon circle | `w-7 h-7` | `w-5 h-5 sm:w-7 sm:h-7`, `shrink-0` |
+| Arrow icon size | `w-3.5 h-3.5` | `w-2.5 h-2.5 sm:w-3.5 sm:h-3.5` |
+
+### What Was Preserved (unchanged)
+- Desktop layout: 4-column grid, `lg:gap-6`, `sm:p-5`, `sm:rounded-3xl`
+- All CATEGORIES data, slugs, links, and hover effects
+- `aspect-[4/3]` image proportions
+- Image gradient overlay and hover scale
+- Section header, "Curated Collections" label, "Explore By Department" heading
+- "View All 800+ Products" ArrowUpRight link
+- `max-w-7xl` container and section padding
+
+### Verification & Build
+- [x] **Production Build (`npm run build`)**: exit code **0**
+- [x] All **26 App Router routes** generated without errors or warnings
+- [x] Homepage (`/`): 9.99 kB

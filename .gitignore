@@ -7,6 +7,9 @@ node_modules/
 
 # Environment files
 .env*.local
+.env
+.env.*
+!.env.example
 
 # Scratch and Vercel artifacts
 scratch/

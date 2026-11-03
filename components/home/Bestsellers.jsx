@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, Flame } from "lucide-react";
+import { ArrowUpRight, Flame } from "lucide-react";
 import ProductGrid from "@/components/products/ProductGrid";
 import { PRODUCTS } from "@/lib/products";
 
@@ -17,7 +17,15 @@ export default function Bestsellers() {
         if (res.ok) {
           const json = await res.json();
           if (isMounted && json.success && Array.isArray(json.data) && json.data.length > 0) {
-            setBestsellers(json.data.slice(0, 4));
+            // Prioritize customer favorites (e.g. Samyang Buldak) in Bestsellers
+            const sortedBestsellers = [...json.data].sort((a, b) => {
+              const isA = a.slug?.includes("samyang") || a.badge === "Bestseller";
+              const isB = b.slug?.includes("samyang") || b.badge === "Bestseller";
+              if (isA && !isB) return -1;
+              if (!isA && isB) return 1;
+              return 0;
+            });
+            setBestsellers(sortedBestsellers.slice(0, 4));
           }
         }
       } catch {
@@ -31,8 +39,8 @@ export default function Bestsellers() {
   }, []);
 
   return (
-    <section className="py-16 sm:py-20 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+    <section className="py-16 sm:py-24 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
         <div>
           <div className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.25em] font-bold text-ak-burgundy mb-2">
             <Flame className="w-4 h-4 fill-ak-gold text-ak-gold" />
@@ -48,10 +56,10 @@ export default function Bestsellers() {
 
         <Link
           href="/shop"
-          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-ak-charcoal/20 hover:border-ak-burgundy text-xs font-semibold tracking-widest uppercase text-ak-charcoal hover:text-ak-burgundy transition-all"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase text-ak-charcoal hover:text-ak-burgundy transition-colors group"
         >
           <span>View All</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </Link>
       </div>
 
