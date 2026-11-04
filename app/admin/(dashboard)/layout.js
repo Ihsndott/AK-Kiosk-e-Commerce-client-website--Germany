@@ -89,8 +89,8 @@ export default function AdminDashboardLayout({ children }) {
     };
 
   return (
-    <div className="min-h-screen bg-[#F0F4F6] text-ak-charcoal flex font-sans">
-      
+    <div className="h-screen overflow-hidden bg-[#F0F4F6] text-ak-charcoal flex font-sans">
+
       {/* Mobile Drawer Backdrop */}
       {mobileOpen && (
         <div
@@ -101,9 +101,12 @@ export default function AdminDashboardLayout({ children }) {
 
       {/* Sidebar (Desktop + Mobile Slide-over) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-ak-charcoal text-ak-ivory flex flex-col justify-between transition-transform duration-300 ease-in-out border-r border-ak-charcoal lg:static lg:translate-x-0 ${
-          mobileOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed inset-y-0 left-0 z-50 w-64 h-screen shrink-0
+    bg-ak-charcoal text-ak-ivory flex flex-col justify-between
+    overflow-y-auto transition-transform duration-300 ease-in-out
+    border-r border-ak-charcoal
+    lg:relative lg:inset-auto lg:translate-x-0 ${mobileOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         {/* Top: Brand Header */}
         <div>
@@ -143,11 +146,10 @@ export default function AdminDashboardLayout({ children }) {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium tracking-wide transition-all ${
-                      isActive
-                        ? "bg-ak-burgundy text-white shadow-sm font-semibold"
-                        : "text-ak-pale-grey/70 hover:bg-white/10 hover:text-white"
-                    }`}
+                    className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium tracking-wide transition-all ${isActive
+                      ? "bg-ak-burgundy text-white shadow-sm font-semibold"
+                      : "text-ak-pale-grey/70 hover:bg-white/10 hover:text-white"
+                      }`}
                   >
                     <Icon className="w-4 h-4 shrink-0" />
                     <span>{item.name}</span>
@@ -171,11 +173,10 @@ export default function AdminDashboardLayout({ children }) {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium transition-all ${
-                  isActive
-                    ? "bg-ak-burgundy text-white shadow-sm font-semibold"
-                    : "text-ak-pale-grey/70 hover:bg-white/10 hover:text-white"
-                }`}
+                className={`flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium transition-all ${isActive
+                  ? "bg-ak-burgundy text-white shadow-sm font-semibold"
+                  : "text-ak-pale-grey/70 hover:bg-white/10 hover:text-white"
+                  }`}
               >
                 <Icon className="w-4 h-4 shrink-0" />
                 <span>{item.name}</span>
@@ -211,11 +212,11 @@ export default function AdminDashboardLayout({ children }) {
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0">
-        
+      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto">
+
         {/* Top Header Bar */}
         <header className="h-16 bg-white/80 backdrop-blur-md border-b border-ak-charcoal/10 px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-30">
-          
+
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileOpen(true)}
