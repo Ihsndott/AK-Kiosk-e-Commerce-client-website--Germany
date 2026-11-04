@@ -5,10 +5,10 @@ import { STORE_INFO } from "@/lib/products";
 
 export default function StoreLocation() {
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
+    <section className=" sm:py-12 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
       <div className="rounded-[2.5rem] bg-ak-icy-blue/50 border border-ak-ivory-border p-6 sm:p-10 lg:p-14 shadow-frame">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
+
           {/* Information Column */}
           <div className="lg:col-span-6 space-y-6">
             <div>

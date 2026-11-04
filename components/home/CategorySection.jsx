@@ -7,7 +7,7 @@ import { CATEGORIES } from "@/lib/products";
 
 export default function CategorySection() {
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
+    <section className="pt-6 pb-8 sm:py-8 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
         <div>
           <span className="text-xs uppercase tracking-[0.25em] font-bold text-ak-burgundy block mb-2">

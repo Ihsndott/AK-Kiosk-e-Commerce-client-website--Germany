@@ -5,7 +5,7 @@ import { Sparkles, MapPin, Tag, Truck } from "lucide-react";
 
 export default function PromotionalBanner() {
   return (
-    <section className="px-4 sm:px-6 md:px-10 max-w-7xl mx-auto my-12">
+    <section className="px-4 sm:px-6 md:px-10 max-w-7xl mx-auto sm:py-10">
       <div className="relative rounded-[2.5rem] bg-gradient-to-r from-ak-charcoal via-ak-charcoal-muted to-ak-charcoal p-8 sm:p-12 text-ak-ivory overflow-hidden border border-ak-charcoal shadow-2xl">
         {/* Decorative background circles */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-ak-burgundy/20 rounded-full blur-3xl pointer-events-none" />
